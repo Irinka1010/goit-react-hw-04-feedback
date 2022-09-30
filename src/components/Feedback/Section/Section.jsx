@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import css from './FeedbackStyled.module.css';
+import { Wrapper, Title } from 'components/Feedback/Section/StyledSection';
 export default function Section({ title, children }) {
   return (
-    <div className={css.feedbackWrapper}>
-      <h2 className={css.title}>{title}</h2>
+    <Wrapper>
+      <Title>{title}</Title>
       <div>{children}</div>
-    </div>
+    </Wrapper>
   );
 }
 Section.propTypes = {
