@@ -23,32 +23,32 @@ export default function Feedback() {
   const countTotalFeedback = () => {
     return good + neutral + bad;
   };
-  const countPositiveFeedbackPercentage = property => {
+  const countPositiveFeedbackPercentage = () => {
     const total = countTotalFeedback();
     if (!total) {
       return 0;
     }
-    const value = property;
-    const result = (value / total) * 100;
+
+    const result = (good / total) * 100;
     return Number(result.toFixed(0));
   };
-  const total = countTotalFeedback();
-  const positiveFeedback = countPositiveFeedbackPercentage(good);
+  countTotalFeedback();
+  countPositiveFeedbackPercentage();
   return (
     <>
       <Section title="Please leave feedback">
         <FeedbackOptions onLeaveFeedback={onLeaveFeedback} />
       </Section>
       <Section title="Statistics">
-        {!total ? (
+        {!countTotalFeedback() ? (
           <Notification>There is no feedback</Notification>
         ) : (
           <Statistics
             good={good}
             neutral={neutral}
             bad={bad}
-            total={total}
-            positiveFeedback={positiveFeedback}
+            total={countTotalFeedback()}
+            positiveFeedback={countPositiveFeedbackPercentage()}
           />
         )}
       </Section>
